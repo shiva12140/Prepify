@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # 1. PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: prepai_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: studentdb  # Database name used during initialization
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. ChromaDB Vector Store
+  chromadb:
+    image: chromadb/chroma
+    container_name: prepai_chroma
+    restart: always
+    volumes:
+      - chroma_data:/chroma/chroma
+    ports:
+      - "8080:8000" # Host 8080 maps to Container 8000 (standard chroma port)
+    environment:
+      - IS_PERSISTENT=TRUE
+
+  # 3. Backend (FastAPI)
+  backend:
+    build: ./Backend
+    container_name: prepai_backend
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+      chromadb:
+        condition: service_started
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      # Use 'studentdb' as the database name to match the 'db' service configuration
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-password}@db:5432/studentdb
+      chroma_host: chromadb
+      chroma_port: 8000
+      chroma_collection: prepai_collection
+    volumes:
+      # Mount code for hot-reloading during development
+      - ./Backend:/app 
+      - ./Backend/uploaded_pdfs:/app/uploaded_pdfs
+      - ./Backend/transcripts:/app/transcripts
+
+  # 4. Frontend (React + Vite served by Nginx)
+  frontend:
+    build: ./Frontend
+    container_name: prepai_frontend
+    restart: always
+    ports:
+      - "5173:80" # Map host port 5173 (browser access) to Nginx port 80
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  chroma_data:
