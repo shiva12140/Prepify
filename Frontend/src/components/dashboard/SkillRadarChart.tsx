@@ -33,9 +33,9 @@ const SkillRadarChart = ({ data }: { data: any[] }) => (
         <Radar
           name="Skill Level"
           dataKey="value"
-          stroke="#F7E396"
+          stroke="#ACC8A2"
           strokeWidth={2}
-          fill="#F7E396"
+          fill="#ACC8A2"
           fillOpacity={0.4}
         />
       </RadarChart>

@@ -13,7 +13,7 @@ import {
 import { useAuth } from "../components/context/AuthContext";
 
 // --- CONFIG ---
-const VAPI_PUBLIC_KEY = "6e393730-74a2-4690-8cb7-845ed3880488";
+const VAPI_PUBLIC_KEY = "c2cf8156-6a28-426b-8066-a67e4a73dcec";
 const BACKEND_URL = "";
 
 const vapi = new Vapi(VAPI_PUBLIC_KEY);
@@ -109,18 +109,18 @@ function AIInterview() {
 
   // --- RENDER ---
   return (
-    <div className="h-screen w-full font-sans text-white relative bg-[#434E78] overflow-hidden flex items-center justify-center">
-      <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#F7E396] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob"></div>
-      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#607B8F] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+    <div className="h-screen w-full font-sans text-white relative bg-[#1A2517] overflow-hidden flex items-center justify-center">
+      <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#ACC8A2] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob"></div>
+      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#2D3B28] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
 
       <div className="relative z-10 w-full max-w-4xl p-6 flex flex-col items-center">
         {viewState === "config" && (
-          <div className="w-full max-w-2xl bg-[#607B8F] rounded-xl shadow-2xl border border-white/10 p-8 md:p-12 transition-all transform animate-fade-in-up">
+          <div className="w-full max-w-2xl bg-[#2D3B28] rounded-xl shadow-2xl border border-white/10 p-8 md:p-12 transition-all transform animate-fade-in-up">
             <div className="mb-8 text-center">
               <h1 className="text-5xl font-bold text-white mb-2 font-handwriting drop-shadow-md">
-                Prep AI
+                Prepify
               </h1>
-              <div className="flex items-center justify-center gap-2 text-[#F7E396]">
+              <div className="flex items-center justify-center gap-2 text-[#ACC8A2]">
                 <Volume2 className="w-6 h-6" />
                 <span className="font-semibold tracking-wide">
                   Configure Your Interview
@@ -130,51 +130,51 @@ function AIInterview() {
 
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-bold text-[#F7E396] mb-2 tracking-wide">
+                <label className="block text-sm font-bold text-[#ACC8A2] mb-2 tracking-wide">
                   Candidate Name
                 </label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full p-4 rounded-lg bg-[#434E78]/50 border-2 border-transparent focus:border-[#F7E396] focus:ring-0 outline-none transition text-white font-medium placeholder-gray-300 shadow-inner"
+                  className="w-full p-4 rounded-lg bg-[#1A2517]/50 border-2 border-transparent focus:border-[#ACC8A2] focus:ring-0 outline-none transition text-white font-medium placeholder-gray-300 shadow-inner"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#F7E396] mb-2 tracking-wide">
+                <label className="block text-sm font-bold text-[#ACC8A2] mb-2 tracking-wide">
                   1. Job Role/Position
                 </label>
                 <input
                   type="text"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="w-full p-4 rounded-lg bg-[#434E78]/50 border-2 border-transparent focus:border-[#F7E396] focus:ring-0 outline-none transition text-white font-medium placeholder-gray-300 shadow-inner"
+                  className="w-full p-4 rounded-lg bg-[#1A2517]/50 border-2 border-transparent focus:border-[#ACC8A2] focus:ring-0 outline-none transition text-white font-medium placeholder-gray-300 shadow-inner"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#F7E396] mb-2 tracking-wide">
+                <label className="block text-sm font-bold text-[#ACC8A2] mb-2 tracking-wide">
                   2. Years of Professional Experience
                 </label>
                 <input
                   type="text"
                   value={exp}
                   onChange={(e) => setExp(e.target.value)}
-                  className="w-full p-4 rounded-lg bg-[#434E78]/50 border-2 border-transparent focus:border-[#F7E396] focus:ring-0 outline-none transition text-white font-medium placeholder-gray-300 shadow-inner"
+                  className="w-full p-4 rounded-lg bg-[#1A2517]/50 border-2 border-transparent focus:border-[#ACC8A2] focus:ring-0 outline-none transition text-white font-medium placeholder-gray-300 shadow-inner"
                 />
               </div>
 
               {/* UPDATED: Difficulty Selection Dropdown */}
               <div>
-                <label className="block text-sm font-bold text-[#F7E396] mb-2 tracking-wide">
+                <label className="block text-sm font-bold text-[#ACC8A2] mb-2 tracking-wide">
                   3. Difficulty Level
                 </label>
                 <div className="relative">
                   <select
                     value={difficulty}
                     onChange={(e) => setDifficulty(e.target.value)}
-                    className="w-full p-4 rounded-lg bg-[#434E78]/50 border-2 border-transparent focus:border-[#F7E396] focus:ring-0 outline-none transition text-white font-medium shadow-inner appearance-none cursor-pointer"
+                    className="w-full p-4 rounded-lg bg-[#1A2517]/50 border-2 border-transparent focus:border-[#ACC8A2] focus:ring-0 outline-none transition text-white font-medium shadow-inner appearance-none cursor-pointer"
                   >
                     <option value="Easy (Beginner)">Easy (Beginner)</option>
                     <option value="Medium (Intermediate)">
@@ -191,7 +191,7 @@ function AIInterview() {
                 disabled={
                   status === "Configuring..." || status === "Connecting..."
                 }
-                className="mt-6 px-8 py-4 bg-[#F7E396] text-[#434E78] font-bold text-lg rounded-lg shadow-lg hover:bg-[#E97F4A] hover:text-white transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-3 w-full justify-center"
+                className="mt-6 px-8 py-4 bg-[#ACC8A2] text-[#1A2517] font-bold text-lg rounded-lg shadow-lg hover:bg-[#7BA370] hover:text-white transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-3 w-full justify-center"
               >
                 {status === "Configuring..." || status === "Connecting..." ? (
                   <Loader2 className="animate-spin w-6 h-6" />
@@ -210,14 +210,14 @@ function AIInterview() {
               <div
                 className={`
                     w-56 h-56 rounded-full 
-                    bg-[#607B8F]
-                    shadow-[0_0_40px_#F7E396]
+                    bg-[#2D3B28]
+                    shadow-[0_0_40px_#ACC8A2]
                     transition-all duration-300 ease-in-out
                     flex items-center justify-center
                     border-4 border-white/20
                     ${
                       isSpeaking
-                        ? "animate-pulse scale-110 shadow-[0_0_60px_#F7E396]"
+                        ? "animate-pulse scale-110 shadow-[0_0_60px_#ACC8A2]"
                         : "animate-bounce"
                     }
                  `}
@@ -231,15 +231,15 @@ function AIInterview() {
             </div>
 
             <h2 className="text-3xl font-bold text-white mb-10 font-handwriting tracking-wider drop-shadow-md">
-              {isSpeaking ? "Prep AI is speaking..." : "Listening to you..."}
+              {isSpeaking ? "Prepify is speaking..." : "Listening to you..."}
             </h2>
 
-            <div className="bg-[#607B8F] p-4 rounded-2xl shadow-xl border border-white/10 flex gap-6">
+            <div className="bg-[#2D3B28] p-4 rounded-2xl shadow-xl border border-white/10 flex gap-6">
               <button
                 onClick={toggleMute}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl transition font-bold shadow-md ${
                   isMuted
-                    ? "bg-[#E97F4A] text-white hover:bg-orange-600"
+                    ? "bg-[#7BA370] text-white hover:bg-orange-600"
                     : "bg-white/10 text-white hover:bg-white/20 border border-white/20"
                 }`}
               >

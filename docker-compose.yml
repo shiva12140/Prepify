@@ -4,7 +4,7 @@ services:
   # 1. PostgreSQL Database
   db:
     image: postgres:15-alpine
-    container_name: prepai_db
+    container_name: prepify_db
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
@@ -23,7 +23,7 @@ services:
   # 2. ChromaDB Vector Store
   chromadb:
     image: chromadb/chroma
-    container_name: prepai_chroma
+    container_name: prepify_chroma
     restart: always
     volumes:
       - chroma_data:/chroma/chroma
@@ -35,7 +35,7 @@ services:
   # 3. Backend (FastAPI)
   backend:
     build: ./Backend
-    container_name: prepai_backend
+    container_name: prepify_backend
     restart: always
     depends_on:
       db:
@@ -51,7 +51,7 @@ services:
       DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-password}@db:5432/studentdb
       chroma_host: chromadb
       chroma_port: 8000
-      chroma_collection: prepai_collection
+      chroma_collection: prepify_collection
     volumes:
       # Mount code for hot-reloading during development
       - ./Backend:/app 
@@ -61,7 +61,7 @@ services:
   # 4. Frontend (React + Vite served by Nginx)
   frontend:
     build: ./Frontend
-    container_name: prepai_frontend
+    container_name: prepify_frontend
     restart: always
     ports:
       - "5173:80" # Map host port 5173 (browser access) to Nginx port 80

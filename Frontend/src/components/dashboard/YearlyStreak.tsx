@@ -7,14 +7,14 @@ interface StreakData {
 }
 
 // Updated Colors:
-// Empty: Dark Blue (#434E78)
+// Empty: Dark Blue (#1A2517)
 // Low -> High: Light Blue -> Yellow -> Orange
 const getColor = (count: number) => {
-  if (count === 0) return "#434E78"; // Empty state (matches page bg)
-  if (count === 1) return "#607B8F"; // Low activity
-  if (count === 2) return "#F7E396"; // Medium activity
-  if (count === 3) return "#E97F4A"; // High activity
-  return "#E97F4A";
+  if (count === 0) return "#1A2517"; // Empty state (matches page bg)
+  if (count === 1) return "#2D3B28"; // Low activity
+  if (count === 2) return "#ACC8A2"; // Medium activity
+  if (count === 3) return "#7BA370"; // High activity
+  return "#7BA370";
 };
 
 const YearlyStreak = ({ data }: { data: StreakData[] }) => {
@@ -49,11 +49,11 @@ const YearlyStreak = ({ data }: { data: StreakData[] }) => {
         <div className="flex gap-6 text-sm text-gray-300">
           <p>
             Total Active Days:{" "}
-            <span className="text-[#F7E396] font-bold">{activeDays}</span>
+            <span className="text-[#ACC8A2] font-bold">{activeDays}</span>
           </p>
           <p>
             Longest Streak:{" "}
-            <span className="text-[#F7E396] font-bold">{maxStreak}</span>
+            <span className="text-[#ACC8A2] font-bold">{maxStreak}</span>
           </p>
         </div>
       </div>

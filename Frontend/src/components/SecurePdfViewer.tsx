@@ -99,7 +99,7 @@ const SecurePdfViewer: React.FC<Props> = ({ noteId }) => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-full text-white">
-        <Loader2 className="w-8 h-8 animate-spin text-[#F7E396] mb-2" />
+        <Loader2 className="w-8 h-8 animate-spin text-[#ACC8A2] mb-2" />
         <p>Securely loading document...</p>
       </div>
     );
@@ -112,7 +112,7 @@ const SecurePdfViewer: React.FC<Props> = ({ noteId }) => {
   return (
     <div className="flex flex-col h-full bg-[#525f88] rounded-xl overflow-hidden relative">
       {/* Toolbar */}
-      <div className="flex items-center justify-between p-2 bg-[#434E78] border-b border-white/10 text-white z-10 shadow-md">
+      <div className="flex items-center justify-between p-2 bg-[#1A2517] border-b border-white/10 text-white z-10 shadow-md">
         <div className="flex items-center gap-2">
           <button
             disabled={pageNum <= 1}

@@ -65,21 +65,21 @@ const Dashboard = () => {
   };
 
   return (
-    // 1. Page Background: #434E78
-    <div className="px-6 py-8 space-y-8 min-h-screen text-white bg-[#434E78] font-sans">
+    // 1. Page Background: #1A2517
+    <div className="px-6 py-8 space-y-8 min-h-screen text-white bg-[#1A2517] font-sans">
       {/* ----------- HEADER SECTION ----------- */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl lg:text-4xl font-bold font-handwriting tracking-wide">
             Welcome back,{" "}
-            <span className="text-[#F7E396]">{username || "User"}!</span>
+            <span className="text-[#ACC8A2]">{username || "User"}!</span>
           </h1>
-          <p className="text-[#607B8F] text-gray-300 mt-1">
+          <p className="text-[#2D3B28] text-gray-300 mt-1">
             Track your progress and stay consistent.
           </p>
         </div>
 
-        <button className="px-6 py-3 bg-[#F7E396] text-[#434E78] rounded-xl shadow-lg hover:bg-[#E97F4A] hover:text-white transition-all duration-300 font-bold flex items-center gap-2 transform hover:-translate-y-1">
+        <button className="px-6 py-3 bg-[#ACC8A2] text-[#1A2517] rounded-xl shadow-lg hover:bg-[#7BA370] hover:text-white transition-all duration-300 font-bold flex items-center gap-2 transform hover:-translate-y-1">
           <PlayCircle size={20} />
           Start New Interview
         </button>
@@ -88,12 +88,12 @@ const Dashboard = () => {
       {/* ----------- TOP ROW: Performance & Skills ----------- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 1. AI Feedback Score */}
-        <div className="bg-[#607B8F] rounded-2xl shadow-xl p-6 border border-white/10 flex flex-col justify-between">
+        <div className="bg-[#2D3B28] rounded-2xl shadow-xl p-6 border border-white/10 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-white flex items-center gap-2">
-              <Brain className="text-[#F7E396]" size={24} /> AI Feedback Score
+              <Brain className="text-[#ACC8A2]" size={24} /> AI Feedback Score
             </h2>
-            <span className="text-xs font-mono text-[#F7E396] bg-[#434E78] px-2 py-1 rounded">
+            <span className="text-xs font-mono text-[#ACC8A2] bg-[#1A2517] px-2 py-1 rounded">
               AVG
             </span>
           </div>
@@ -111,10 +111,10 @@ const Dashboard = () => {
         </div>
 
         {/* 2. Skill Radar Chart */}
-        <div className="bg-[#607B8F] rounded-2xl shadow-xl p-6 border border-white/10">
+        <div className="bg-[#2D3B28] rounded-2xl shadow-xl p-6 border border-white/10">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-bold text-white flex items-center gap-2">
-              <TrendingUp className="text-[#F7E396]" size={24} /> Skill Analysis
+              <TrendingUp className="text-[#ACC8A2]" size={24} /> Skill Analysis
             </h2>
           </div>
           <div className="h-64 w-full">
@@ -126,16 +126,16 @@ const Dashboard = () => {
       {/* ----------- MIDDLE ROW: Activity & Quiz Stats ----------- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 3. Recent Activity List */}
-        <div className="bg-[#607B8F] rounded-2xl shadow-xl p-6 border border-white/10">
+        <div className="bg-[#2D3B28] rounded-2xl shadow-xl p-6 border border-white/10">
           <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-            <Clock className="text-[#F7E396]" size={24} /> Recent Activity
+            <Clock className="text-[#ACC8A2]" size={24} /> Recent Activity
           </h2>
 
           <div className="space-y-4">
             {recentActivities.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between p-4 bg-[#434E78]/50 rounded-xl border border-white/5 hover:border-[#F7E396]/50 transition cursor-pointer"
+                className="flex items-center justify-between p-4 bg-[#1A2517]/50 rounded-xl border border-white/5 hover:border-[#ACC8A2]/50 transition cursor-pointer"
               >
                 <div className="flex items-center gap-4">
                   <div
@@ -156,7 +156,7 @@ const Dashboard = () => {
                 </div>
                 <div className="text-right">
                   {item.score ? (
-                    <span className="text-lg font-bold text-[#F7E396]">
+                    <span className="text-lg font-bold text-[#ACC8A2]">
                       {item.score}
                     </span>
                   ) : (
@@ -171,23 +171,23 @@ const Dashboard = () => {
         </div>
 
         {/* 4. Quiz & Knowledge Metrics */}
-        <div className="bg-[#607B8F] rounded-2xl shadow-xl p-6 border border-white/10 flex flex-col justify-between">
+        <div className="bg-[#2D3B28] rounded-2xl shadow-xl p-6 border border-white/10 flex flex-col justify-between">
           <div>
             <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <CheckCircle className="text-[#F7E396]" size={24} /> Quiz &
+              <CheckCircle className="text-[#ACC8A2]" size={24} /> Quiz &
               Knowledge
             </h2>
 
             <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="p-4 bg-[#434E78]/50 rounded-xl border border-white/5">
+              <div className="p-4 bg-[#1A2517]/50 rounded-xl border border-white/5">
                 <p className="text-gray-300 text-sm">Quizzes Completed</p>
                 <p className="text-3xl font-bold text-white mt-1">
                   {quizStats.completed}
                 </p>
               </div>
-              <div className="p-4 bg-[#434E78]/50 rounded-xl border border-white/5">
+              <div className="p-4 bg-[#1A2517]/50 rounded-xl border border-white/5">
                 <p className="text-gray-300 text-sm">Avg. Accuracy</p>
-                <p className="text-3xl font-bold text-[#F7E396] mt-1">
+                <p className="text-3xl font-bold text-[#ACC8A2] mt-1">
                   {quizStats.accuracy}%
                 </p>
               </div>
@@ -220,9 +220,9 @@ const Dashboard = () => {
       </div>
 
       {/* ----------- BOTTOM ROW: Yearly Streak ----------- */}
-      <div className="bg-[#607B8F] rounded-2xl shadow-xl p-6 border border-white/10">
+      <div className="bg-[#2D3B28] rounded-2xl shadow-xl p-6 border border-white/10">
         <h2 className="text-xl font-bold mb-4 text-white flex items-center gap-2">
-          <Clock className="text-[#F7E396]" size={24} /> Activity Streak
+          <Clock className="text-[#ACC8A2]" size={24} /> Activity Streak
         </h2>
         {/* Container for the streak chart to handle responsiveness */}
         <div className="overflow-x-auto pb-2">

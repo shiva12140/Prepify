@@ -157,8 +157,8 @@ const ResumeGeneratedQuize: React.FC = () => {
       className={`p-3 rounded-xl border-2 transition-all cursor-pointer flex flex-col gap-2 group h-full
         ${
           quizType === value
-            ? "bg-[#607B8F] border-[#F7E396] shadow-lg transform scale-[1.01]"
-            : "bg-[#607B8F]/50 border-transparent hover:bg-[#607B8F] hover:border-[#E97F4A]/50"
+            ? "bg-[#2D3B28] border-[#ACC8A2] shadow-lg transform scale-[1.01]"
+            : "bg-[#2D3B28]/50 border-transparent hover:bg-[#2D3B28] hover:border-[#7BA370]/50"
         }
       `}
     >
@@ -166,8 +166,8 @@ const ResumeGeneratedQuize: React.FC = () => {
         <div
           className={`p-1.5 rounded-lg ${
             quizType === value
-              ? "bg-[#F7E396] text-[#434E78]"
-              : "bg-[#434E78]/50 text-[#F7E396]"
+              ? "bg-[#ACC8A2] text-[#1A2517]"
+              : "bg-[#1A2517]/50 text-[#ACC8A2]"
           }`}
         >
           {icon}
@@ -175,8 +175,8 @@ const ResumeGeneratedQuize: React.FC = () => {
         <h4
           className={`text-sm font-bold ${
             quizType === value
-              ? "text-[#F7E396]"
-              : "text-white group-hover:text-[#F7E396]"
+              ? "text-[#ACC8A2]"
+              : "text-white group-hover:text-[#ACC8A2]"
           }`}
         >
           {title}
@@ -188,10 +188,10 @@ const ResumeGeneratedQuize: React.FC = () => {
 
   return (
     // FIXED: h-screen + overflow-hidden to fix double scrollbars.
-    <div className="w-full h-screen bg-[#434E78] text-white relative font-sans overflow-hidden flex flex-col">
+    <div className="w-full h-screen bg-[#1A2517] text-white relative font-sans overflow-hidden flex flex-col">
       {/* Background Blobs */}
-      <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#F7E396] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#607B8F] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob animation-delay-2000 pointer-events-none"></div>
+      <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#ACC8A2] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#2D3B28] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob animation-delay-2000 pointer-events-none"></div>
 
       {/* Main Content Wrapper - Added 'pt-6' to fix header cut-off */}
       <div className="flex-1 overflow-y-auto p-4 lg:p-6 pt-8 lg:pt-12 w-full z-10 flex flex-col items-center">
@@ -201,7 +201,7 @@ const ResumeGeneratedQuize: React.FC = () => {
             <h1 className="text-3xl font-bold mb-2 font-handwriting drop-shadow-md">
               Smart AI-Powered Quiz Generator
             </h1>
-            <div className="flex items-center justify-center gap-2 text-[#F7E396] text-sm">
+            <div className="flex items-center justify-center gap-2 text-[#ACC8A2] text-sm">
               <Brain className="w-5 h-5" />
               <span className="font-semibold tracking-wide">
                 Generate Quizzes from Resumes or Notes
@@ -214,9 +214,9 @@ const ResumeGeneratedQuize: React.FC = () => {
             {/* LEFT COLUMN */}
             <div className="lg:col-span-7 flex flex-col gap-5">
               {/* 1. Source Card - Compact Padding (p-5) */}
-              <div className="bg-[#607B8F] rounded-2xl shadow-xl border border-white/10 p-5">
+              <div className="bg-[#2D3B28] rounded-2xl shadow-xl border border-white/10 p-5">
                 <div className="flex items-center gap-3 mb-3 border-b border-white/10 pb-3">
-                  <FileSpreadsheet className="w-5 h-5 text-[#F7E396]" />
+                  <FileSpreadsheet className="w-5 h-5 text-[#ACC8A2]" />
                   <h3 className="text-lg font-bold text-white">
                     1. Select Quiz Source
                   </h3>
@@ -233,8 +233,8 @@ const ResumeGeneratedQuize: React.FC = () => {
                       className={`flex-1 py-2.5 px-4 rounded-xl font-bold transition flex items-center justify-center gap-2 shadow-md text-sm
                         ${
                           uploadType === "resume"
-                            ? "bg-[#F7E396] text-[#434E78] ring-2 ring-white"
-                            : "bg-[#434E78] text-white hover:bg-[#E97F4A]"
+                            ? "bg-[#ACC8A2] text-[#1A2517] ring-2 ring-white"
+                            : "bg-[#1A2517] text-white hover:bg-[#7BA370]"
                         }`}
                     >
                       <Upload className="w-4 h-4" />
@@ -246,8 +246,8 @@ const ResumeGeneratedQuize: React.FC = () => {
                       className={`flex-1 py-2.5 px-4 rounded-xl font-bold transition flex items-center justify-center gap-2 shadow-md text-sm
                         ${
                           uploadType === "notes"
-                            ? "bg-[#F7E396] text-[#434E78] ring-2 ring-white"
-                            : "bg-[#434E78] text-white hover:bg-[#E97F4A]"
+                            ? "bg-[#ACC8A2] text-[#1A2517] ring-2 ring-white"
+                            : "bg-[#1A2517] text-white hover:bg-[#7BA370]"
                         }`}
                     >
                       <Upload className="w-4 h-4" />
@@ -277,9 +277,9 @@ const ResumeGeneratedQuize: React.FC = () => {
                   )}
 
                   {uploadedFile && (
-                    <div className="p-3 bg-[#434E78]/50 border border-[#F7E396]/50 rounded-lg flex items-center justify-between">
+                    <div className="p-3 bg-[#1A2517]/50 border border-[#ACC8A2]/50 rounded-lg flex items-center justify-between">
                       <div className="overflow-hidden">
-                        <p className="text-[#F7E396] font-semibold text-xs">
+                        <p className="text-[#ACC8A2] font-semibold text-xs">
                           File Uploaded
                         </p>
                         <div className="flex items-center gap-2 mt-1">
@@ -301,9 +301,9 @@ const ResumeGeneratedQuize: React.FC = () => {
               </div>
 
               {/* 2. Output Type Selection */}
-              <div className="bg-[#607B8F] rounded-2xl shadow-xl border border-white/10 p-5">
+              <div className="bg-[#2D3B28] rounded-2xl shadow-xl border border-white/10 p-5">
                 <div className="flex items-center gap-3 mb-3 border-b border-white/10 pb-3">
-                  <ListChecks className="w-5 h-5 text-[#F7E396]" />
+                  <ListChecks className="w-5 h-5 text-[#ACC8A2]" />
                   <h3 className="text-lg font-bold text-white">
                     2. Choose Output Type
                   </h3>
@@ -322,16 +322,16 @@ const ResumeGeneratedQuize: React.FC = () => {
 
             {/* RIGHT COLUMN: Configuration */}
             <div className="lg:col-span-5 flex flex-col h-full">
-              <div className="bg-[#607B8F] rounded-2xl shadow-xl border border-white/10 p-5 flex flex-col h-full">
+              <div className="bg-[#2D3B28] rounded-2xl shadow-xl border border-white/10 p-5 flex flex-col h-full">
                 <div className="flex items-center gap-3 mb-3 border-b border-white/10 pb-3 shrink-0">
-                  <Clock className="w-5 h-5 text-[#F7E396]" />
+                  <Clock className="w-5 h-5 text-[#ACC8A2]" />
                   <h3 className="text-lg font-bold text-white">3. Configure</h3>
                 </div>
 
                 <div className="flex-1 flex flex-col gap-4">
                   {/* Custom Prompt - Reduced height */}
                   <div className="flex-1 flex flex-col min-h-0">
-                    <label className="text-[#F7E396] font-bold block mb-2 text-xs tracking-wide">
+                    <label className="text-[#ACC8A2] font-bold block mb-2 text-xs tracking-wide">
                       Custom Instructions (Optional)
                     </label>
                     <textarea
@@ -339,17 +339,17 @@ const ResumeGeneratedQuize: React.FC = () => {
                       onChange={(e) => setCustomPrompt(e.target.value)}
                       placeholder="e.g., 'Focus on React hooks...'"
                       // Reduced min-height to 100px for compactness
-                      className="w-full flex-1 p-3 rounded-lg bg-[#434E78]/50 border-2 border-transparent focus:border-[#F7E396] focus:ring-0 outline-none transition text-white placeholder-gray-400 resize-none shadow-inner text-sm min-h-[100px]"
+                      className="w-full flex-1 p-3 rounded-lg bg-[#1A2517]/50 border-2 border-transparent focus:border-[#ACC8A2] focus:ring-0 outline-none transition text-white placeholder-gray-400 resize-none shadow-inner text-sm min-h-[100px]"
                     ></textarea>
                   </div>
 
                   {/* Duration Slider */}
                   <div className="shrink-0 pt-2">
                     <div className="flex justify-between items-center mb-2">
-                      <label className="text-[#F7E396] font-bold text-xs tracking-wide">
+                      <label className="text-[#ACC8A2] font-bold text-xs tracking-wide">
                         Quiz Duration
                       </label>
-                      <span className="bg-[#434E78] px-2 py-1 rounded-full text-white text-xs font-bold border border-white/10">
+                      <span className="bg-[#1A2517] px-2 py-1 rounded-full text-white text-xs font-bold border border-white/10">
                         {duration} min
                       </span>
                     </div>
@@ -360,7 +360,7 @@ const ResumeGeneratedQuize: React.FC = () => {
                       step="1"
                       value={duration}
                       onChange={(e) => setDuration(parseInt(e.target.value))}
-                      className="w-full h-1.5 bg-[#434E78] rounded-lg appearance-none cursor-pointer accent-[#F7E396]"
+                      className="w-full h-1.5 bg-[#1A2517] rounded-lg appearance-none cursor-pointer accent-[#ACC8A2]"
                     />
                     <div className="flex justify-between text-xs text-gray-300 mt-1 font-medium">
                       <span>5m</span>
@@ -377,7 +377,7 @@ const ResumeGeneratedQuize: React.FC = () => {
                         ${
                           !quizType || !fileObject || isProcessing
                             ? "bg-gray-500 text-gray-300 cursor-not-allowed opacity-50"
-                            : "bg-[#F7E396] text-[#434E78] hover:bg-[#E97F4A] hover:text-white"
+                            : "bg-[#ACC8A2] text-[#1A2517] hover:bg-[#7BA370] hover:text-white"
                         }
                       `}
                   >

@@ -9,7 +9,7 @@ export HOME=/home/user
 # ChromaDB Internal Settings
 export chroma_host="127.0.0.1"
 export chroma_port="8080"
-export chroma_collection="prepai_collection"
+export chroma_collection="prepify_collection"
 export CHROMA_PATH="/tmp/chroma_store"
 
 # --- 2. Start ChromaDB (Background) ---

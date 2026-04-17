@@ -199,7 +199,7 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
 
     // Active Border Highlight (Yellow)
     const borderClass = isActive
-      ? "border-[#F7E396] shadow-[0_0_10px_#F7E396]"
+      ? "border-[#ACC8A2] shadow-[0_0_10px_#ACC8A2]"
       : "border-transparent";
 
     let bgClass = "";
@@ -208,13 +208,13 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
         bgClass = "bg-green-500 text-white";
         break;
       case "markedForReview":
-        bgClass = "bg-yellow-400 text-[#434E78]";
+        bgClass = "bg-yellow-400 text-[#1A2517]";
         break;
       case "visited":
         bgClass = "bg-red-500 text-white"; // Visited but skipped
         break;
       default:
-        bgClass = "bg-[#434E78]/50 text-gray-400"; // Not visited
+        bgClass = "bg-[#1A2517]/50 text-gray-400"; // Not visited
     }
 
     return `${baseClass} ${bgClass} ${borderClass}`;
@@ -225,13 +225,13 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
   // --- RENDER SCORE ---
   if (showScore) {
     return (
-      <div className="min-h-screen bg-[#434E78] flex items-center justify-center p-6 relative overflow-hidden">
+      <div className="min-h-screen bg-[#1A2517] flex items-center justify-center p-6 relative overflow-hidden">
         {/* Background Blobs */}
-        <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#F7E396] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#607B8F] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob animation-delay-2000 pointer-events-none"></div>
+        <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#ACC8A2] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob pointer-events-none"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#2D3B28] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob animation-delay-2000 pointer-events-none"></div>
 
-        <div className="w-full max-w-2xl p-10 bg-[#607B8F] rounded-2xl shadow-2xl text-center border border-white/10 relative z-10">
-          <CheckCircle className="w-20 h-20 text-[#F7E396] mx-auto mb-6" />
+        <div className="w-full max-w-2xl p-10 bg-[#2D3B28] rounded-2xl shadow-2xl text-center border border-white/10 relative z-10">
+          <CheckCircle className="w-20 h-20 text-[#ACC8A2] mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-2 text-white font-handwriting">
             Test Complete
           </h2>
@@ -239,11 +239,11 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
             You have successfully submitted the quiz.
           </p>
 
-          <div className="text-center mb-10 p-6 bg-[#434E78]/50 rounded-xl border border-white/10">
+          <div className="text-center mb-10 p-6 bg-[#1A2517]/50 rounded-xl border border-white/10">
             <div className="text-sm text-gray-300 uppercase tracking-widest mb-2">
               Your Score
             </div>
-            <div className="text-6xl font-extrabold text-[#F7E396] drop-shadow-md">
+            <div className="text-6xl font-extrabold text-[#ACC8A2] drop-shadow-md">
               {score}
             </div>
             <div className="text-lg text-gray-300 mt-2">
@@ -254,7 +254,7 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
           <div className="flex justify-center gap-3">
             <button
               onClick={onBack}
-              className="px-8 py-4 rounded-xl bg-[#F7E396] text-[#434E78] font-bold hover:bg-[#E97F4A] hover:text-white transition shadow-lg flex items-center gap-2"
+              className="px-8 py-4 rounded-xl bg-[#ACC8A2] text-[#1A2517] font-bold hover:bg-[#7BA370] hover:text-white transition shadow-lg flex items-center gap-2"
             >
               <ArrowLeft className="w-5 h-5" /> Back to Generator
             </button>
@@ -266,11 +266,11 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
 
   if (questions.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#434E78] text-gray-300">
+      <div className="min-h-screen flex items-center justify-center bg-[#1A2517] text-gray-300">
         No questions available. Please try generating again.
         <button
           onClick={onBack}
-          className="ml-4 text-[#F7E396] underline hover:text-[#E97F4A]"
+          className="ml-4 text-[#ACC8A2] underline hover:text-[#7BA370]"
         >
           Go Back
         </button>
@@ -280,10 +280,10 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
 
   // --- MAIN QUIZ UI ---
   return (
-    <div className="min-h-screen bg-[#434E78] text-white p-4 lg:p-8 font-sans relative overflow-hidden">
+    <div className="min-h-screen bg-[#1A2517] text-white p-4 lg:p-8 font-sans relative overflow-hidden">
       {/* Background Blobs */}
-      <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#F7E396] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#607B8F] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob animation-delay-2000 pointer-events-none"></div>
+      <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#ACC8A2] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#2D3B28] rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob animation-delay-2000 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10 h-full">
         {/* Left: Main Question area */}
@@ -291,17 +291,17 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
           <div className="mb-6 flex items-center justify-between">
             <button
               onClick={onBack}
-              className="flex items-center text-gray-300 hover:text-[#F7E396] transition"
+              className="flex items-center text-gray-300 hover:text-[#ACC8A2] transition"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
               Exit Quiz
             </button>
-            <div className="hidden md:block text-[#F7E396] font-bold text-lg bg-[#607B8F] px-4 py-1 rounded-full border border-white/10 shadow-sm">
+            <div className="hidden md:block text-[#ACC8A2] font-bold text-lg bg-[#2D3B28] px-4 py-1 rounded-full border border-white/10 shadow-sm">
               Question {currentIndex + 1} / {totalQuestions}
             </div>
           </div>
 
-          <div className="bg-[#607B8F] rounded-2xl shadow-xl p-8 mb-6 border border-white/10 flex-1 flex flex-col">
+          <div className="bg-[#2D3B28] rounded-2xl shadow-xl p-8 mb-6 border border-white/10 flex-1 flex flex-col">
             <div className="mb-8">
               <h2 className="text-xl lg:text-2xl font-bold text-white leading-relaxed">
                 {currentQuestion.question}
@@ -314,12 +314,12 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
 
                 // Styling: Only show selection state, NOT correctness
                 let optionClass =
-                  "bg-[#434E78]/40 border border-white/10 text-gray-200 hover:bg-[#434E78]/60";
+                  "bg-[#1A2517]/40 border border-white/10 text-gray-200 hover:bg-[#1A2517]/60";
 
                 if (isSelected) {
                   // Active selection styling
                   optionClass =
-                    "bg-[#F7E396] text-[#434E78] border-[#F7E396] font-bold shadow-md transform scale-[1.01]";
+                    "bg-[#ACC8A2] text-[#1A2517] border-[#ACC8A2] font-bold shadow-md transform scale-[1.01]";
                 }
 
                 return (
@@ -334,13 +334,13 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center
                         ${
                           isSelected
-                            ? "border-[#434E78]"
-                            : "border-gray-400 group-hover:border-[#F7E396]"
+                            ? "border-[#1A2517]"
+                            : "border-gray-400 group-hover:border-[#ACC8A2]"
                         }
                     `}
                     >
                       {isSelected && (
-                        <div className="w-3 h-3 rounded-full bg-[#434E78]"></div>
+                        <div className="w-3 h-3 rounded-full bg-[#1A2517]"></div>
                       )}
                     </div>
                   </button>
@@ -353,7 +353,7 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
               <div className="flex gap-3 w-full md:w-auto">
                 <button
                   onClick={handleMarkForReview}
-                  className="flex-1 md:flex-none px-6 py-3 rounded-lg bg-yellow-400 text-[#434E78] font-bold hover:bg-yellow-300 transition shadow-md"
+                  className="flex-1 md:flex-none px-6 py-3 rounded-lg bg-yellow-400 text-[#1A2517] font-bold hover:bg-yellow-300 transition shadow-md"
                 >
                   Mark for Review
                 </button>
@@ -368,7 +368,7 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
 
               <button
                 onClick={handleSaveAndNext}
-                className="w-full md:w-auto px-8 py-3 rounded-lg bg-[#F7E396] text-[#434E78] font-bold hover:bg-[#E97F4A] hover:text-white transition shadow-lg flex items-center justify-center gap-2"
+                className="w-full md:w-auto px-8 py-3 rounded-lg bg-[#ACC8A2] text-[#1A2517] font-bold hover:bg-[#7BA370] hover:text-white transition shadow-lg flex items-center justify-center gap-2"
               >
                 {currentIndex === totalQuestions - 1
                   ? "Submit Quiz"
@@ -383,19 +383,19 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
         <aside className="col-span-12 lg:col-span-4">
           <div className="sticky top-6 space-y-6">
             {/* Timer Card */}
-            <div className="bg-[#607B8F] rounded-2xl p-6 shadow-xl border border-white/10 text-center relative overflow-hidden">
+            <div className="bg-[#2D3B28] rounded-2xl p-6 shadow-xl border border-white/10 text-center relative overflow-hidden">
               <div className="relative z-10">
                 <div className="flex items-center justify-center gap-2 text-gray-300 mb-2">
                   <Clock className="w-4 h-4" /> Time Remaining
                 </div>
-                <div className="text-5xl font-mono font-bold text-[#F7E396] tracking-wider">
+                <div className="text-5xl font-mono font-bold text-[#ACC8A2] tracking-wider">
                   {formatTime(Math.max(0, timeLeft))}
                 </div>
               </div>
             </div>
 
             {/* Palette Card */}
-            <div className="bg-[#607B8F] rounded-2xl p-6 shadow-xl border border-white/10">
+            <div className="bg-[#2D3B28] rounded-2xl p-6 shadow-xl border border-white/10">
               <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-white/10 pb-3">
                 Question Palette
               </h3>
@@ -426,7 +426,7 @@ const MCQQuizPage: React.FC<MCQQuizPageProps> = ({
                   Review
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-[#434E78]/50 rounded-sm border border-gray-500"></div>{" "}
+                  <div className="w-3 h-3 bg-[#1A2517]/50 rounded-sm border border-gray-500"></div>{" "}
                   Not Visited
                 </div>
               </div>

@@ -27,22 +27,22 @@ const Sidebar: React.FC = () => {
 
   return (
     <aside
-      // 1. MAIN BACKGROUND: #434E78
-      className={`flex flex-col justify-between h-screen bg-[#434E78] text-white transition-all duration-300 shadow-xl border-r border-[#607B8F]/50 ${
+      // 1. MAIN BACKGROUND: #1A2517
+      className={`flex flex-col justify-between h-screen bg-[#1A2517] text-white transition-all duration-300 shadow-xl border-r border-[#2D3B28]/50 ${
         collapsed ? "w-20" : "w-64"
       }`}
     >
       {/* Top Section */}
       <div>
-        <div className="flex items-center justify-between font-bold py-6 px-6 border-b border-[#607B8F]/50">
+        <div className="flex items-center justify-between font-bold py-6 px-6 border-b border-[#2D3B28]/50">
           {!collapsed && (
-            <span className="text-xl tracking-wide font-handwriting text-[#F7E396]">
-              Prep AI
+            <span className="text-xl tracking-wide font-handwriting text-[#ACC8A2]">
+              Prepify
             </span>
           )}
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="p-1 hover:bg-[#E97F4A] rounded-full transition text-white"
+            className="p-1 hover:bg-[#7BA370] rounded-full transition text-white"
           >
             {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
           </button>
@@ -54,14 +54,14 @@ const Sidebar: React.FC = () => {
               key={item.path}
               to={item.path}
               // 2. BUTTON LOGIC:
-              // - Default: bg-[#607B8F]
-              // - Hover: bg-[#E97F4A]
-              // - Active: Border #F7E396 (Highlight)
+              // - Default: bg-[#2D3B28]
+              // - Hover: bg-[#7BA370]
+              // - Active: Border #ACC8A2 (Highlight)
               className={`flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 border-2
                 ${
                   location.pathname === item.path
-                    ? "bg-[#607B8F] border-[#F7E396] shadow-lg translate-x-1"
-                    : "bg-[#607B8F] border-transparent hover:bg-[#E97F4A] text-gray-100 hover:text-white"
+                    ? "bg-[#2D3B28] border-[#ACC8A2] shadow-lg translate-x-1"
+                    : "bg-[#2D3B28] border-transparent hover:bg-[#7BA370] text-gray-100 hover:text-white"
                 }`}
             >
               <span className="text-white">{item.icon}</span>
@@ -74,13 +74,13 @@ const Sidebar: React.FC = () => {
       </div>
 
       {/* Bottom Section */}
-      <div className="p-4 border-t border-[#607B8F]/50 space-y-3">
-        <button className="flex items-center space-x-3 p-3 rounded-xl bg-[#607B8F] border-2 border-transparent hover:bg-[#E97F4A] transition w-full text-left text-white">
+      <div className="p-4 border-t border-[#2D3B28]/50 space-y-3">
+        <button className="flex items-center space-x-3 p-3 rounded-xl bg-[#2D3B28] border-2 border-transparent hover:bg-[#7BA370] transition w-full text-left text-white">
           <Settings size={20} />
           {!collapsed && <span>Settings</span>}
         </button>
 
-        <button className="flex items-center space-x-3 p-3 rounded-xl bg-[#607B8F] border-2 border-transparent hover:bg-[#E97F4A] transition w-full text-left text-white">
+        <button className="flex items-center space-x-3 p-3 rounded-xl bg-[#2D3B28] border-2 border-transparent hover:bg-[#7BA370] transition w-full text-left text-white">
           <User size={20} />
           {!collapsed && <span>{username}</span>}
         </button>

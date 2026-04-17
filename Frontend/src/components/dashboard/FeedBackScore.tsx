@@ -10,8 +10,8 @@ interface Props {
 
 const ScoreCard = ({ label, value }: any) => (
   // Updated: Transparent/Darker background for individual score items
-  <div className="p-4 text-center bg-[#434E78]/50 border border-white/5 rounded-xl">
-    <p className="text-3xl font-bold text-[#F7E396]">{value}%</p>
+  <div className="p-4 text-center bg-[#1A2517]/50 border border-white/5 rounded-xl">
+    <p className="text-3xl font-bold text-[#ACC8A2]">{value}%</p>
     <p className="text-gray-300 text-sm mt-1">{label}</p>
   </div>
 );
@@ -33,7 +33,7 @@ const FeedbackScore: React.FC<Props> = ({
         <ScoreCard label="Speed" value={speed} />
       </div>
 
-      <div className="bg-[#434E78]/30 p-4 rounded-xl border border-white/5">
+      <div className="bg-[#1A2517]/30 p-4 rounded-xl border border-white/5">
         <h4 className="text-sm font-semibold text-white mb-2 uppercase tracking-wide opacity-80">
           Suggested Improvements
         </h4>
@@ -43,7 +43,7 @@ const FeedbackScore: React.FC<Props> = ({
               key={i}
               className="text-gray-200 text-sm flex items-start gap-2"
             >
-              <span className="text-[#E97F4A] mt-1">•</span> {item}
+              <span className="text-[#7BA370] mt-1">•</span> {item}
             </li>
           ))}
         </ul>

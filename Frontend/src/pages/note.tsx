@@ -258,18 +258,18 @@ const Notes: React.FC = () => {
   };
 
   return (
-    // 1. Root Container: #434E78 Background, No Scrollbars
-    <div className="flex h-screen w-full overflow-hidden bg-[#434E78] font-sans text-white">
-      {/* --- Left Sidebar (#607B8F) --- */}
+    // 1. Root Container: #1A2517 Background, No Scrollbars
+    <div className="flex h-screen w-full overflow-hidden bg-[#1A2517] font-sans text-white">
+      {/* --- Left Sidebar (#2D3B28) --- */}
       <div
-        className={`h-screen shrink-0 transition-all duration-300 bg-[#607B8F] border-r border-white/10 flex flex-col gap-4 ${
+        className={`h-screen shrink-0 transition-all duration-300 bg-[#2D3B28] border-r border-white/10 flex flex-col gap-4 ${
           isSidebarOpen ? "w-72 p-4" : "w-0 p-0 overflow-hidden"
         }`}
       >
         {isSidebarOpen && (
           <>
             <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-4">
-              <FileText className="text-[#F7E396] w-6 h-6" />
+              <FileText className="text-[#ACC8A2] w-6 h-6" />
               <h3 className="text-xl font-bold text-white font-handwriting">
                 My Notes
               </h3>
@@ -283,11 +283,11 @@ const Notes: React.FC = () => {
               onChange={handleFileChange}
             />
 
-            {/* Upload Button: #F7E396 (Highlight) */}
+            {/* Upload Button: #ACC8A2 (Highlight) */}
             <button
               onClick={handleUploadClick}
               disabled={isUploading}
-              className="flex items-center justify-center gap-2 w-full bg-[#F7E396] text-[#434E78] px-4 py-3 rounded-xl hover:bg-[#E97F4A] hover:text-white transition font-bold shadow-md"
+              className="flex items-center justify-center gap-2 w-full bg-[#ACC8A2] text-[#1A2517] px-4 py-3 rounded-xl hover:bg-[#7BA370] hover:text-white transition font-bold shadow-md"
             >
               {isUploading ? (
                 <Loader2 className="animate-spin" size={20} />
@@ -308,8 +308,8 @@ const Notes: React.FC = () => {
                   onClick={() => handleNoteSelect(note)}
                   className={`group relative p-3 rounded-lg cursor-pointer flex items-center justify-between transition-all border border-transparent ${
                     currentNote?.id === note.id
-                      ? "bg-[#434E78] border-[#F7E396] shadow-md"
-                      : "hover:bg-[#434E78]/50 text-gray-100"
+                      ? "bg-[#1A2517] border-[#ACC8A2] shadow-md"
+                      : "hover:bg-[#1A2517]/50 text-gray-100"
                   }`}
                 >
                   {editingNoteId === note.id ? (
@@ -319,7 +319,7 @@ const Notes: React.FC = () => {
                         value={editName}
                         onChange={(e) => setEditName(e.target.value)}
                         onClick={(e) => e.stopPropagation()}
-                        className="flex-1 bg-[#434E78] text-white text-xs px-2 py-1 rounded border border-[#F7E396] outline-none"
+                        className="flex-1 bg-[#1A2517] text-white text-xs px-2 py-1 rounded border border-[#ACC8A2] outline-none"
                         autoFocus
                       />
                       <button
@@ -342,7 +342,7 @@ const Notes: React.FC = () => {
                           size={16}
                           className={`${
                             currentNote?.id === note.id
-                              ? "text-[#F7E396]"
+                              ? "text-[#ACC8A2]"
                               : "text-gray-300"
                           } shrink-0`}
                         />
@@ -359,7 +359,7 @@ const Notes: React.FC = () => {
                       <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={(e) => startEditing(e, note)}
-                          className="p-1.5 hover:bg-white/10 rounded text-gray-300 hover:text-[#F7E396]"
+                          className="p-1.5 hover:bg-white/10 rounded text-gray-300 hover:text-[#ACC8A2]"
                           title="Rename"
                         >
                           <Edit2 size={14} />
@@ -381,9 +381,9 @@ const Notes: React.FC = () => {
         )}
       </div>
 
-      {/* --- Center: PDF Viewer (#434E78 Background) --- */}
-      <div className="flex flex-1 overflow-hidden relative flex-col bg-[#434E78]">
-        <header className="flex justify-between items-center p-4 border-b border-white/10 shrink-0 z-10 bg-[#434E78]">
+      {/* --- Center: PDF Viewer (#1A2517 Background) --- */}
+      <div className="flex flex-1 overflow-hidden relative flex-col bg-[#1A2517]">
+        <header className="flex justify-between items-center p-4 border-b border-white/10 shrink-0 z-10 bg-[#1A2517]">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -398,7 +398,7 @@ const Notes: React.FC = () => {
           {!isChatOpen && currentNote && (
             <button
               onClick={() => setIsChatOpen(true)}
-              className="flex items-center gap-2 bg-[#F7E396] text-[#434E78] hover:bg-[#E97F4A] hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition shadow-md"
+              className="flex items-center gap-2 bg-[#ACC8A2] text-[#1A2517] hover:bg-[#7BA370] hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition shadow-md"
             >
               <MessageSquare size={18} /> Open Chat
             </button>
@@ -422,10 +422,10 @@ const Notes: React.FC = () => {
         </div>
       </div>
 
-      {/* --- Resizable Chat Panel (#607B8F) --- */}
+      {/* --- Resizable Chat Panel (#2D3B28) --- */}
       {isChatOpen && (
         <div
-          className="w-1 hover:w-2 cursor-col-resize bg-[#434E78] hover:bg-[#F7E396] transition-all z-20 flex items-center justify-center shrink-0"
+          className="w-1 hover:w-2 cursor-col-resize bg-[#1A2517] hover:bg-[#ACC8A2] transition-all z-20 flex items-center justify-center shrink-0"
           onMouseDown={startResizing}
         >
           <GripVertical size={16} className="text-white/30" />
@@ -434,13 +434,13 @@ const Notes: React.FC = () => {
 
       <div
         style={{ width: isChatOpen ? chatWidth : 0 }}
-        className={`flex flex-col bg-[#607B8F] border-l border-white/10 shrink-0 transition-all duration-100 ease-linear overflow-hidden`}
+        className={`flex flex-col bg-[#2D3B28] border-l border-white/10 shrink-0 transition-all duration-100 ease-linear overflow-hidden`}
       >
         {isChatOpen && (
           <>
-            <header className="flex justify-between items-center p-4 border-b border-white/10 bg-[#607B8F] shrink-0">
+            <header className="flex justify-between items-center p-4 border-b border-white/10 bg-[#2D3B28] shrink-0">
               <div className="flex items-center gap-2">
-                <Brain size={20} className="text-[#F7E396]" />
+                <Brain size={20} className="text-[#ACC8A2]" />
                 <h3 className="text-lg font-bold text-white whitespace-nowrap font-handwriting">
                   AI Chat
                 </h3>
@@ -470,8 +470,8 @@ const Notes: React.FC = () => {
                   <div
                     className={`max-w-[85%] p-4 rounded-xl text-sm shadow-sm ${
                       msg.role === "user"
-                        ? "bg-[#F7E396] text-[#434E78] font-medium rounded-tr-none"
-                        : "bg-[#434E78] text-white border border-white/10 rounded-tl-none prose prose-invert prose-sm max-w-none"
+                        ? "bg-[#ACC8A2] text-[#1A2517] font-medium rounded-tr-none"
+                        : "bg-[#1A2517] text-white border border-white/10 rounded-tl-none prose prose-invert prose-sm max-w-none"
                     }`}
                   >
                     {msg.role === "assistant" ? (
@@ -486,8 +486,8 @@ const Notes: React.FC = () => {
               ))}
               {isChatLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-[#434E78] p-3 rounded-lg border border-white/10">
-                    <Loader2 className="animate-spin w-4 h-4 text-[#F7E396]" />
+                  <div className="bg-[#1A2517] p-3 rounded-lg border border-white/10">
+                    <Loader2 className="animate-spin w-4 h-4 text-[#ACC8A2]" />
                   </div>
                 </div>
               )}
@@ -495,7 +495,7 @@ const Notes: React.FC = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            <div className="p-4 border-t border-white/10 shrink-0 bg-[#607B8F]">
+            <div className="p-4 border-t border-white/10 shrink-0 bg-[#2D3B28]">
               <div className="flex gap-2">
                 <input
                   type="text"
@@ -503,14 +503,14 @@ const Notes: React.FC = () => {
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                   placeholder="Type your question..."
-                  // Input: Dark Blue (#434E78) for contrast on Light Blue (#607B8F) panel
-                  className="flex-1 bg-[#434E78] text-white rounded-xl px-4 py-3 border border-transparent focus:border-[#F7E396] focus:ring-0 outline-none placeholder-gray-400 shadow-inner"
+                  // Input: Dark Blue (#1A2517) for contrast on Light Blue (#2D3B28) panel
+                  className="flex-1 bg-[#1A2517] text-white rounded-xl px-4 py-3 border border-transparent focus:border-[#ACC8A2] focus:ring-0 outline-none placeholder-gray-400 shadow-inner"
                   disabled={!sessionId || isChatLoading}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={!sessionId || isChatLoading}
-                  className="bg-[#F7E396] p-3 rounded-xl text-[#434E78] hover:bg-[#E97F4A] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md"
+                  className="bg-[#ACC8A2] p-3 rounded-xl text-[#1A2517] hover:bg-[#7BA370] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md"
                 >
                   <Send size={20} />
                 </button>

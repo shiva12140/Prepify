@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
-    APP_NAME: str = "prepAI"
+    APP_NAME: str = "Prepify"
     APP_VERSION: str = "1.0.0"
     APP_DESCRIPTION: str = "FastAPI + PostgreSQL with SQLAlchemy async"
 
