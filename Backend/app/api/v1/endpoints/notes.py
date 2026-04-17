@@ -28,7 +28,7 @@ router = APIRouter()
 UPLOAD_DIRECTORY = "uploaded_pdfs"
 os.makedirs(UPLOAD_DIRECTORY, exist_ok=True)
 
-embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
+embedding_model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu')
 
 @router.post("/stream_chat", response_class=StreamingResponse)
 async def ai_chat(
