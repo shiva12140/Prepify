@@ -14,7 +14,7 @@ import { useAuth } from "../components/context/AuthContext";
 
 // --- CONFIG ---
 const VAPI_PUBLIC_KEY = "c2cf8156-6a28-426b-8066-a67e4a73dcec";
-const BACKEND_URL = "";
+const BACKEND_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api/v1";
 
 const vapi = new Vapi(VAPI_PUBLIC_KEY);
 
@@ -72,7 +72,7 @@ function AIInterview() {
     setStatus("Configuring...");
     try {
       const response = await fetch(
-        `${BACKEND_URL}/api/v1/interview/api/get-vapi-config`,
+        `${BACKEND_URL}/interview/api/get-vapi-config`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

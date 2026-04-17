@@ -58,7 +58,7 @@ export const renameNote = async (noteId: number, newName: string) => {
 
 // 5. Get the URL for the PDF content (for the viewer)
 export const getNoteContentUrl = (noteId: number): string => {
-  return `/api/v1/notes/${noteId}/content`;
+  return `${API.defaults.baseURL}/notes/${noteId}/content`;
 };
 
 // 6. Fetch the Blob directly
@@ -100,7 +100,7 @@ export const streamChatRequest = async (
 
   try {
     const response = await fetch(
-      `/api/v1/notes/chat/${sessionId}?user_prompt=${encodeURIComponent(
+      `${API.defaults.baseURL}/notes/chat/${sessionId}?user_prompt=${encodeURIComponent(
         userMessage
       )}`,
       {
