@@ -16,7 +16,7 @@ async def call_llm(prompt:str):
     try:
         response = await client.chat.completions.create(
             # CRUCIAL: Use the LiteLLM format: 'gemini/gemini-2.5-pro'
-            model="openai/gpt-oss-120b", 
+            model="llama-3.3-70b-versatile", 
             messages=[
                 {"role": "user", "content": prompt}
             ],
@@ -91,7 +91,7 @@ async def stream_chat(messages: List[dict], context: str, retrieved_docs: str | 
     try:
         # Ensure 'client' is initialized before this function in your code
         stream = await client.chat.completions.create(
-            model="openai/gpt-oss-120b",
+            model="llama-3.3-70b-versatile",
             messages=full_history,
             temperature=0.7,
             stream=True 

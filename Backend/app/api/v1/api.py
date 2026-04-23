@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.api.v1.endpoints import auth, quiz, notes, interview
+from app.api.v1.endpoints import auth, quiz, notes, interview, dashboard
 
 api_router = APIRouter()
 
@@ -28,4 +28,11 @@ api_router.include_router(
     interview.router,
     prefix="/interview",
     tags=["Interview"]
+)
+
+# Include dashboard routes
+api_router.include_router(
+    dashboard.router,
+    prefix="/dashboard",
+    tags=["Dashboard"]
 )

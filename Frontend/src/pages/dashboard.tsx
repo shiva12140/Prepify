@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import YearlyStreak from "../components/dashboard/YearlyStreak";
 import FeedbackScore from "../components/dashboard/FeedBackScore";
 import SkillRadarChart from "../components/dashboard/SkillRadarChart";
 import { generateYearlyStreakData } from "../utils/generateYearlyStreakData";
 import { useAuth } from "../components/context/AuthContext";
+import API from "../api/api";
 import {
   PlayCircle,
   FileText,
@@ -12,57 +13,90 @@ import {
   TrendingUp,
   AlertCircle,
   Clock,
+  MessageSquare,
+  Loader2,
 } from "lucide-react";
+
+interface DashboardStats {
+  username: string;
+  notes_count: number;
+  sessions_count: number;
+  messages_count: number;
+  active_days_last_30: number;
+  recent_activity: {
+    id: string | number;
+    type: string;
+    title: string;
+    date: string | null;
+  }[];
+}
 
 const Dashboard = () => {
   const { username } = useAuth();
   const streakData = generateYearlyStreakData();
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // Mock Data for Charts
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await API.get("/dashboard/stats");
+        setStats(res.data);
+      } catch (err) {
+        console.error("Failed to fetch dashboard stats:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
+  }, []);
+
+  // Radar data — uses real stats where available, falls back to defaults
   const radarData = [
-    { skill: "DSA", value: 70 },
-    { skill: "System Design", value: 60 },
-    { skill: "Communication", value: 85 },
-    { skill: "Problem Solving", value: 75 },
-    { skill: "Accuracy", value: 68 },
-    { skill: "Time Mgmt", value: 80 },
+    { skill: "Notes Uploaded", value: stats ? Math.min(stats.notes_count * 10, 100) : 0 },
+    { skill: "Chat Sessions", value: stats ? Math.min(stats.sessions_count * 10, 100) : 0 },
+    { skill: "Messages Sent", value: stats ? Math.min(stats.messages_count * 2, 100) : 0 },
+    { skill: "Active Days", value: stats ? Math.min(stats.active_days_last_30 * 3.3, 100) : 0 },
+    { skill: "Engagement", value: stats ? Math.min((stats.notes_count + stats.sessions_count) * 8, 100) : 0 },
+    { skill: "Consistency", value: stats ? Math.min(stats.active_days_last_30 * 5, 100) : 0 },
   ];
 
-  // Mock Data for Recent Activity
-  const recentActivities = [
-    {
-      id: 1,
-      type: "interview",
-      title: "React Native Interview",
-      date: "Today, 10:23 AM",
-      score: "85%",
-      icon: <PlayCircle size={20} />,
-    },
-    {
-      id: 2,
-      type: "quiz",
-      title: "Frontend Basics MCQ",
-      date: "Yesterday",
-      score: "92%",
-      icon: <CheckCircle size={20} />,
-    },
-    {
-      id: 3,
-      type: "note",
-      title: "System_Design_Notes.pdf",
-      date: "2 days ago",
-      status: "Uploaded",
-      icon: <FileText size={20} />,
-    },
-  ];
-
-  // Mock Data for Quiz Stats
-  const quizStats = {
-    completed: 15,
-    accuracy: 72,
-    weakestTopic: "Dynamic Programming",
-    strongestTopic: "React Hooks",
+  // Format relative date
+  const formatDate = (dateStr: string | null) => {
+    if (!dateStr) return "";
+    const date = new Date(dateStr);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    if (diffDays === 0) return "Today";
+    if (diffDays === 1) return "Yesterday";
+    if (diffDays < 7) return `${diffDays} days ago`;
+    return date.toLocaleDateString();
   };
+
+  const recentActivities = stats?.recent_activity?.map((item, idx) => ({
+    id: item.id || idx,
+    type: item.type,
+    title: item.title,
+    date: formatDate(item.date),
+    icon: item.type === "note" ? <FileText size={20} /> : <MessageSquare size={20} />,
+    status: item.type === "note" ? "Uploaded" : "Chat",
+  })) || [];
+
+  const quizStats = {
+    completed: stats?.sessions_count || 0,
+    accuracy: stats ? Math.min(Math.round((stats.messages_count / Math.max(stats.sessions_count, 1)) * 10), 100) : 0,
+    notesUploaded: stats?.notes_count || 0,
+    activeDays: stats?.active_days_last_30 || 0,
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-[#1A2517]">
+        <Loader2 className="animate-spin w-10 h-10 text-[#ACC8A2]" />
+      </div>
+    );
+  }
 
   return (
     // 1. Page Background: #1A2517
@@ -99,14 +133,15 @@ const Dashboard = () => {
           </div>
           {/* Passed prop to handle transparent background in child */}
           <FeedbackScore
-            confidence={78}
-            clarity={82}
-            accuracy={70}
-            speed={65}
-            improvements={[
-              "Improve explanation clarity",
-              "Practice more DP problems",
-            ]}
+            confidence={Math.min(stats?.notes_count ? stats.notes_count * 12 : 10, 95)}
+            clarity={Math.min(stats?.messages_count ? stats.messages_count * 3 : 10, 95)}
+            accuracy={Math.min(stats?.sessions_count ? stats.sessions_count * 15 : 10, 95)}
+            speed={Math.min(stats?.active_days_last_30 ? stats.active_days_last_30 * 5 : 10, 95)}
+            improvements={
+              stats?.notes_count === 0
+                ? ["Upload your first PDF to get started", "Try the AI Interview feature"]
+                : ["Keep uploading notes regularly", "Chat with your documents for deeper understanding"]
+            }
           />
         </div>
 
@@ -132,41 +167,40 @@ const Dashboard = () => {
           </h2>
 
           <div className="space-y-4">
-            {recentActivities.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center justify-between p-4 bg-[#1A2517]/50 rounded-xl border border-white/5 hover:border-[#ACC8A2]/50 transition cursor-pointer"
-              >
-                <div className="flex items-center gap-4">
-                  <div
-                    className={`p-3 rounded-full ${
-                      item.type === "interview"
-                        ? "bg-blue-500/20 text-blue-300"
-                        : item.type === "quiz"
-                        ? "bg-green-500/20 text-green-300"
-                        : "bg-purple-500/20 text-purple-300"
-                    }`}
-                  >
-                    {item.icon}
+            {recentActivities.length === 0 ? (
+              <div className="text-center text-gray-400 py-8">
+                <FileText size={40} className="mx-auto mb-3 opacity-30" />
+                <p>No activity yet. Upload a PDF or start a chat!</p>
+              </div>
+            ) : (
+              recentActivities.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex items-center justify-between p-4 bg-[#1A2517]/50 rounded-xl border border-white/5 hover:border-[#ACC8A2]/50 transition cursor-pointer"
+                >
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={`p-3 rounded-full ${
+                        item.type === "note"
+                          ? "bg-purple-500/20 text-purple-300"
+                          : "bg-green-500/20 text-green-300"
+                      }`}
+                    >
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-white">{item.title}</h4>
+                      <p className="text-xs text-gray-300">{item.date}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-white">{item.title}</h4>
-                    <p className="text-xs text-gray-300">{item.date}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  {item.score ? (
-                    <span className="text-lg font-bold text-[#ACC8A2]">
-                      {item.score}
-                    </span>
-                  ) : (
+                  <div className="text-right">
                     <span className="text-xs bg-white/10 px-2 py-1 rounded text-gray-300">
                       {item.status}
                     </span>
-                  )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
 
@@ -174,40 +208,40 @@ const Dashboard = () => {
         <div className="bg-[#2D3B28] rounded-2xl shadow-xl p-6 border border-white/10 flex flex-col justify-between">
           <div>
             <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <CheckCircle className="text-[#ACC8A2]" size={24} /> Quiz &
+              <CheckCircle className="text-[#ACC8A2]" size={24} /> Usage &
               Knowledge
             </h2>
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="p-4 bg-[#1A2517]/50 rounded-xl border border-white/5">
-                <p className="text-gray-300 text-sm">Quizzes Completed</p>
+                <p className="text-gray-300 text-sm">Notes Uploaded</p>
                 <p className="text-3xl font-bold text-white mt-1">
-                  {quizStats.completed}
+                  {quizStats.notesUploaded}
                 </p>
               </div>
               <div className="p-4 bg-[#1A2517]/50 rounded-xl border border-white/5">
-                <p className="text-gray-300 text-sm">Avg. Accuracy</p>
+                <p className="text-gray-300 text-sm">Chat Sessions</p>
                 <p className="text-3xl font-bold text-[#ACC8A2] mt-1">
-                  {quizStats.accuracy}%
+                  {quizStats.completed}
                 </p>
               </div>
             </div>
 
             <div className="space-y-3">
-              <div className="flex justify-between items-center p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                <span className="text-sm text-red-200 flex items-center gap-2">
-                  <AlertCircle size={16} /> Weakest Topic
+              <div className="flex justify-between items-center p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                <span className="text-sm text-blue-200 flex items-center gap-2">
+                  <MessageSquare size={16} /> Total Messages
                 </span>
-                <span className="font-bold text-red-100">
-                  {quizStats.weakestTopic}
+                <span className="font-bold text-blue-100">
+                  {stats?.messages_count || 0}
                 </span>
               </div>
               <div className="flex justify-between items-center p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
                 <span className="text-sm text-green-200 flex items-center gap-2">
-                  <TrendingUp size={16} /> Strongest Topic
+                  <TrendingUp size={16} /> Active Days (30d)
                 </span>
                 <span className="font-bold text-green-100">
-                  {quizStats.strongestTopic}
+                  {quizStats.activeDays}
                 </span>
               </div>
             </div>

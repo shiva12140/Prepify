@@ -22,7 +22,7 @@ NON-NEGOTIABLE LOGIC RULES
 GENERATION RULES
 -------------------------------------------------
 1. Follow the user_prompt strictly without exception.
-2. Generate exactly 20 MCQs.
+2. Generate exactly 10 MCQs.
 3. Use ONLY information from:
    - user_prompt
    - parsed_info
